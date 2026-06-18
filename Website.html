@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>GP × Children's Home Project</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --green-50:  #E1F5EE;
+    --green-100: #9FE1CB;
+    --green-400: #1D9E75;
+    --green-600: #0F6E56;
+    --green-800: #085041;
+    --green-900: #04342C;
+    --teal-50:  #E6F7F3;
+    --amber-50: #FAEEDA;
+    --amber-400:#BA7517;
+    --purple-50:#EEEDFE;
+    --purple-600:#534AB7;
+    --coral-50: #FAECE7;
+    --coral-600:#993C1D;
+    --text:     #1a1a18;
+    --text-2:   #4a4a46;
+    --text-3:   #7a7a76;
+    --border:   rgba(10,10,8,0.12);
+    --bg:       #fafaf8;
+    --white:    #ffffff;
+    --radius-sm:6px;
+    --radius:   12px;
+    --radius-lg:18px;
+  }
+
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); font-size: 16px; line-height: 1.7; }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(250,250,248,0.92); backdrop-filter: blur(12px);
+    border-bottom: 0.5px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 40px; height: 60px;
+  }
+  .nav-logo {
+    font-family: 'DM Serif Display', serif; font-size: 17px;
+    color: var(--green-900); letter-spacing: -0.01em; text-decoration: none;
+  }
+  .nav-logo span { color: var(--green-400); }
+  .nav-links { display: flex; gap: 6px; }
+  .nav-links a {
+    font-size: 13px; padding: 6px 14px; border-radius: 999px;
+    color: var(--text-2); text-decoration: none;
+    transition: background 0.15s, color 0.15s;
+  }
+  .nav-links a:hover, .nav-links a.active { background: var(--green-50); color: var(--green-800); }
+  .nav-cta {
+    background: var(--green-600); color: #fff !important; padding: 7px 18px !important;
+    border-radius: 999px !important;
+  }
+  .nav-cta:hover { background: var(--green-800) !important; color: #fff !important; }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--green-900); color: #fff; padding: 100px 40px 80px;
+    position: relative; overflow: hidden;
+  }
+  .hero-deco {
+    position: absolute; top: -80px; right: -80px;
+    width: 420px; height: 420px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(29,158,117,0.25) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-deco2 {
+    position: absolute; bottom: -60px; left: -60px;
+    width: 280px; height: 280px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(159,225,203,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-inner { max-width: 700px; position: relative; z-index: 1; }
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 12px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--green-100); margin-bottom: 24px;
+  }
+  .eyebrow::before {
+    content: ''; display: block; width: 20px; height: 1.5px; background: var(--green-400);
+  }
+  .hero h1 {
+    font-family: 'DM Serif Display', serif; font-size: clamp(36px, 5vw, 56px);
+    line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 20px;
+    color: #fff;
+  }
+  .hero h1 em { font-style: italic; color: var(--green-100); }
+  .hero p { font-size: 17px; color: rgba(255,255,255,0.7); max-width: 520px; margin-bottom: 36px; line-height: 1.7; }
+  .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+  .btn {
+    display: inline-block; font-size: 14px; font-weight: 500; padding: 11px 24px;
+    border-radius: 999px; text-decoration: none; cursor: pointer; border: none;
+    transition: opacity 0.15s, transform 0.15s;
+  }
+  .btn:hover { opacity: 0.88; transform: translateY(-1px); }
+  .btn-white { background: #fff; color: var(--green-900); }
+  .btn-ghost { background: rgba(255,255,255,0.1); color: #fff; border: 1px solid rgba(255,255,255,0.25); }
+
+  /* ── STAT STRIP ── */
+  .stats {
+    background: var(--white); border-bottom: 0.5px solid var(--border);
+    display: grid; grid-template-columns: repeat(4, 1fr);
+  }
+  .stat-item {
+    padding: 28px 32px; border-right: 0.5px solid var(--border);
+  }
+  .stat-item:last-child { border-right: none; }
+  .stat-num {
+    font-family: 'DM Serif Display', serif; font-size: 32px;
+    color: var(--green-600); line-height: 1;
+  }
+  .stat-label { font-size: 13px; color: var(--text-3); margin-top: 4px; }
+
+  /* ── SECTIONS ── */
+  section { padding: 80px 40px; }
+  .section-inner { max-width: 960px; margin: 0 auto; }
+  .sec-eyebrow {
+    font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--green-400); margin-bottom: 12px;
+  }
+  .sec-h2 {
+    font-family: 'DM Serif Display', serif; font-size: clamp(28px, 3.5vw, 40px);
+    line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 16px; color: var(--text);
+  }
+  .sec-lead { font-size: 16px; color: var(--text-2); max-width: 540px; margin-bottom: 48px; }
+
+  /* ── GOALS GRID ── */
+  .goals-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; }
+  .goal-card {
+    background: var(--white); border: 0.5px solid var(--border);
+    border-radius: var(--radius); padding: 24px 20px;
+    transition: box-shadow 0.15s;
+  }
+  .goal-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
+  .goal-icon {
+    width: 40px; height: 40px; border-radius: 10px; background: var(--green-50);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 14px; font-size: 20px;
+  }
+  .goal-card h3 { font-size: 14px; font-weight: 500; margin-bottom: 6px; }
+  .goal-card p { font-size: 13px; color: var(--text-3); line-height: 1.6; }
+
+  /* ── PLAN / TIMELINE ── */
+  .plan-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
+  .timeline { display: flex; flex-direction: column; gap: 0; }
+  .tl-item { display: flex; gap: 18px; }
+  .tl-left { display: flex; flex-direction: column; align-items: center; }
+  .tl-dot {
+    width: 36px; height: 36px; border-radius: 50%; flex-shrink: 0;
+    background: var(--green-600); color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 500;
+  }
+  .tl-line { width: 1.5px; flex: 1; background: var(--border); min-height: 28px; }
+  .tl-item:last-child .tl-line { display: none; }
+  .tl-body { padding: 4px 0 32px; }
+  .tl-week { font-size: 11px; font-weight: 500; letter-spacing: 0.08em; color: var(--green-400); text-transform: uppercase; margin-bottom: 4px; }
+  .tl-title { font-size: 15px; font-weight: 500; margin-bottom: 4px; }
+  .tl-desc { font-size: 13px; color: var(--text-2); line-height: 1.6; }
+
+  .activities { display: flex; flex-direction: column; gap: 14px; }
+  .act-card {
+    background: var(--white); border: 0.5px solid var(--border);
+    border-radius: var(--radius); padding: 18px 20px;
+    display: flex; gap: 14px; align-items: flex-start;
+  }
+  .act-emoji { font-size: 24px; line-height: 1; margin-top: 2px; }
+  .act-card h4 { font-size: 14px; font-weight: 500; margin-bottom: 3px; }
+  .act-card p { font-size: 13px; color: var(--text-3); line-height: 1.5; }
+
+  /* ── TEAM ── */
+  .team-section { background: var(--green-50); }
+  .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 16px; }
+  .team-card {
+    background: var(--white); border: 0.5px solid var(--border);
+    border-radius: var(--radius); padding: 24px 16px; text-align: center;
+  }
+  .avatar {
+    width: 52px; height: 52px; border-radius: 50%; margin: 0 auto 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 15px; font-weight: 500; letter-spacing: 0.03em;
+  }
+  .av-1 { background: var(--green-50); color: var(--green-800); }
+  .av-2 { background: var(--purple-50); color: var(--purple-600); }
+  .av-3 { background: var(--coral-50); color: var(--coral-600); }
+  .av-4 { background: var(--amber-50); color: var(--amber-400); }
+  .team-card .name { font-size: 14px; font-weight: 500; margin-bottom: 3px; }
+  .team-card .role { font-size: 12px; color: var(--text-3); }
+
+  /* ── SUPPORT ── */
+  .support-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+  .donation-box {
+    background: var(--green-900); border-radius: var(--radius-lg); padding: 32px 28px; color: #fff;
+  }
+  .donation-box h3 { font-family: 'DM Serif Display', serif; font-size: 22px; margin-bottom: 8px; }
+  .donation-box p { font-size: 14px; color: rgba(255,255,255,0.65); margin-bottom: 24px; }
+  .progress-track { background: rgba(255,255,255,0.15); border-radius: 999px; height: 8px; margin-bottom: 10px; overflow: hidden; }
+  .progress-fill { background: var(--green-100); height: 100%; border-radius: 999px; width: 62%; }
+  .progress-labels { display: flex; justify-content: space-between; font-size: 12px; color: rgba(255,255,255,0.55); margin-bottom: 24px; }
+  .items-list { display: flex; flex-direction: column; gap: 8px; }
+  .item-row {
+    background: rgba(255,255,255,0.08); border-radius: var(--radius-sm);
+    padding: 10px 14px; font-size: 13px; display: flex; align-items: center; gap: 10px;
+    color: rgba(255,255,255,0.85);
+  }
+  .item-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green-100); flex-shrink: 0; }
+
+  .faq-col { display: flex; flex-direction: column; gap: 10px; }
+  .faq-box {
+    background: var(--white); border: 0.5px solid var(--border);
+    border-radius: var(--radius); overflow: hidden;
+  }
+  .faq-q {
+    width: 100%; padding: 16px 18px; background: none; border: none; text-align: left;
+    font-size: 14px; font-weight: 500; color: var(--text); cursor: pointer;
+    display: flex; justify-content: space-between; align-items: center;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .faq-q svg { flex-shrink: 0; transition: transform 0.2s; }
+  .faq-q.open svg { transform: rotate(180deg); }
+  .faq-a { font-size: 13px; color: var(--text-2); line-height: 1.65; padding: 0 18px 16px; display: none; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--green-900); color: rgba(255,255,255,0.5);
+    padding: 40px 40px; text-align: center;
+  }
+  footer .logo { font-family: 'DM Serif Display', serif; font-size: 18px; color: #fff; margin-bottom: 8px; }
+  footer p { font-size: 13px; }
+  footer a { color: var(--green-100); text-decoration: none; }
+
+  /* ── SAFEGUARDING BANNER ── */
+  .safe-banner {
+    background: var(--amber-50); border-top: 2px solid #EF9F27;
+    padding: 14px 40px; font-size: 13px; color: var(--amber-400);
+    display: flex; align-items: center; gap: 10px;
+  }
+  .safe-icon { font-size: 18px; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 760px) {
+    nav { padding: 0 20px; }
+    .nav-links { display: none; }
+    .hero { padding: 60px 20px 50px; }
+    section { padding: 56px 20px; }
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .stat-item { padding: 20px; }
+    .stat-item:nth-child(2) { border-right: none; }
+    .plan-wrap { grid-template-columns: 1fr; gap: 40px; }
+    .support-grid { grid-template-columns: 1fr; }
+    .safe-banner { padding: 12px 20px; }
+    footer { padding: 32px 20px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#home" class="nav-logo">GP <span>×</span> Children's Home</a>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#plan">Our plan</a>
+    <a href="#team">Team</a>
+    <a href="#support" class="nav-cta">Support us</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-deco"></div>
+  <div class="hero-deco2"></div>
+  <div class="hero-inner">
+    <div class="eyebrow">Global Perspectives &mdash; Community Action Project</div>
+    <h1>Making a difference, <em>one visit at a time</em></h1>
+    <p>Our group is visiting a local children's home as part of our Global Perspectives course &mdash; connecting classroom learning to lived experience and real community need.</p>
+    <div class="hero-actions">
+      <a href="#plan" class="btn btn-white">See our plan</a>
+      <a href="#support" class="btn btn-ghost">How to support</a>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat-item">
+    <div class="stat-num">30+</div>
+    <div class="stat-label">Children we'll reach</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">6</div>
+    <div class="stat-label">Team members</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">3</div>
+    <div class="stat-label">Activities planned</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">1</div>
+    <div class="stat-label">Dedicated visit day</div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-inner">
+    <div class="sec-eyebrow">About this project</div>
+    <h2 class="sec-h2">Why we're doing this</h2>
+    <p class="sec-lead">Global Perspectives challenges us to explore real-world issues through research, reflection, and action. This visit connects theory to life &mdash; understanding child welfare, community responsibility, and what it means to serve.</p>
+
+    <div class="goals-grid">
+      <div class="goal-card">
+        <div class="goal-icon">🌍</div>
+        <h3>Global awareness</h3>
+        <p>Connect local realities to global conversations on child welfare, rights, and inequality.</p>
+      </div>
+      <div class="goal-card">
+        <div class="goal-icon">🤝</div>
+        <h3>Community service</h3>
+        <p>Give back through respectful, meaningful engagement with children who need it most.</p>
+      </div>
+      <div class="goal-card">
+        <div class="goal-icon">💡</div>
+        <h3>Critical thinking</h3>
+        <p>Reflect on social systems, inequality, and what real change actually looks like.</p>
+      </div>
+      <div class="goal-card">
+        <div class="goal-icon">❤️</div>
+        <h3>Empathy in action</h3>
+        <p>Build genuine relationships &mdash; not a checkbox exercise, but real human connection.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PLAN -->
+<section id="plan" style="background:#f3f9f6;">
+  <div class="section-inner">
+    <div class="sec-eyebrow">Our plan</div>
+    <h2 class="sec-h2">How the visit will work</h2>
+    <p class="sec-lead">Six weeks, carefully structured to ensure a respectful, joyful, and meaningful experience for the children and our team.</p>
+
+    <div class="plan-wrap">
+      <!-- Timeline -->
+      <div>
+        <p style="font-size:13px; font-weight:500; color:var(--text-3); margin-bottom:20px; text-transform:uppercase; letter-spacing:0.08em;">Timeline</p>
+        <div class="timeline">
+          <div class="tl-item">
+            <div class="tl-left"><div class="tl-dot">1</div><div class="tl-line"></div></div>
+            <div class="tl-body">
+              <div class="tl-week">Step 1–2</div>
+              <div class="tl-title">Research &amp; preparation</div>
+              <div class="tl-desc">Each member studies child welfare issues and the home's background. We prepare how to engage sensitively and safely.</div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-left"><div class="tl-dot">2</div><div class="tl-line"></div></div>
+            <div class="tl-body">
+              <div class="tl-week">Step 3</div>
+              <div class="tl-title">Resource collection</div>
+              <div class="tl-desc">Gathering donations &mdash; stationery, books, games, hygiene items &mdash; in coordination with the home's management.</div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-left"><div class="tl-dot">3</div><div class="tl-line"></div></div>
+            <div class="tl-body">
+              <div class="tl-week">Step 4</div>
+              <div class="tl-title">The visit day</div>
+              <div class="tl-desc">A full day at the home: structured activities, informal time, and handing over donations. No photos without consent.</div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-left"><div class="tl-dot">4</div><div class="tl-line"></div></div>
+            <div class="tl-body">
+              <div class="tl-week">Step 5-6</div>
+              <div class="tl-title">Reflection &amp; presentation</div>
+              <div class="tl-desc">Personal reflections, compiled findings, and a school presentation linking the experience to our GP themes.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Activities -->
+      <div>
+        <p style="font-size:13px; font-weight:500; color:var(--text-3); margin-bottom:20px; text-transform:uppercase; letter-spacing:0.08em;">Visit day activities</p>
+        <div class="activities">
+          <div class="act-card">
+            <div class="act-emoji">🎨</div>
+            <div>
+              <h4>Art &amp; craft session</h4>
+              <p>A creative workshop where children can express themselves freely through drawing, painting, and craft making.</p>
+            </div>
+          </div>
+          <div class="act-card">
+            <div class="act-emoji">📖</div>
+            <div>
+              <h4>Storytelling circle</h4>
+              <p>Reading aloud and encouraging children to share their own stories in a warm, safe environment.</p>
+            </div>
+          </div>
+          <div class="act-card">
+            <div class="act-emoji">🏆</div>
+            <div>
+              <h4>Games &amp; play</h4>
+              <p>Team games that build confidence, cooperation, and most importantly &mdash; joy.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section id="team" class="team-section">
+  <div class="section-inner">
+    <div class="sec-eyebrow">The team</div>
+    <h2 class="sec-h2">Who we are</h2>
+    <p class="sec-lead">Global Perspectives students committed to turning learning into action. Each member brings a unique perspective.</p>
+
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="avatar av-1">AM</div>
+        <div class="name">Amara M.</div>
+        <div class="role">Project lead</div>
+      </div>
+      <div class="team-card">
+        <div class="avatar av-2">JK</div>
+        <div class="name">James K.</div>
+        <div class="role">Research lead</div>
+      </div>
+      <div class="team-card">
+        <div class="avatar av-3">PN</div>
+        <div class="name">Priya N.</div>
+        <div class="role">Logistics</div>
+      </div>
+      <div class="team-card">
+        <div class="avatar av-4">TO</div>
+        <div class="name">Tolu O.</div>
+        <div class="role">Outreach</div>
+      </div>
+      <div class="team-card">
+        <div class="avatar av-1">LW</div>
+        <div class="name">Leila W.</div>
+        <div class="role">Documentation</div>
+      </div>
+      <div class="team-card">
+        <div class="avatar av-2">CM</div>
+        <div class="name">Caleb M.</div>
+        <div class="role">Activities</div>
+      </div>
+    </div>
+    <p style="font-size:12px; color:var(--text-3); margin-top:20px;">
+      ✏️ Replace placeholder names and roles with your actual group members.
+    </p>
+  </div>
+</section>
+
+<!-- SUPPORT -->
+<section id="support">
+  <div class="section-inner">
+    <div class="sec-eyebrow">How to support</div>
+    <h2 class="sec-h2">Help us make it count</h2>
+    <p class="sec-lead">Two ways to contribute: donate supplies, or spread the word.</p>
+
+    <div class="support-grid">
+      <div class="donation-box">
+        <h3>Donation drive</h3>
+        <p>We're collecting school supplies and essentials. Drop off at school reception by the Friday before visit week.</p>
+        <div class="progress-track"><div class="progress-fill"></div></div>
+        <div class="progress-labels">
+          <span>62% of goal reached</span>
+          <span>Target: 50 packs</span>
+        </div>
+        <div class="items-list">
+          <div class="item-row"><div class="item-dot"></div>Stationery (pens, pencils, notebooks)</div>
+          <div class="item-row"><div class="item-dot"></div>Age-appropriate books &amp; games</div>
+          <div class="item-row"><div class="item-dot"></div>Toiletries (soap, toothbrushes)</div>
+          <div class="item-row"><div class="item-dot"></div>Non-perishable snacks</div>
+        </div>
+      </div>
+
+      <div class="faq-col">
+        <p style="font-size:13px; font-weight:500; color:var(--text-3); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:4px;">FAQs</p>
+
+        <div class="faq-box">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            Can I volunteer on the visit day?
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-a">The visit is limited to our GP group due to child safeguarding rules. You can still help through donations or spreading the word!</div>
+        </div>
+
+        <div class="faq-box">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            Where do I drop donations?
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-a">Leave items at the school reception or hand them directly to any team member. We collect until the Friday before visit week.</div>
+        </div>
+
+        <div class="faq-box">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            Will there be a follow-up event?
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-a">Yes! We'll host a short school presentation sharing our findings and reflections after the visit. Watch the notice board for the date.</div>
+        </div>
+
+        <div class="faq-box">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            How are safeguarding rules being followed?
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-a">All activities are supervised by the home's staff. No photos of children will be taken or shared without explicit consent from guardians and management.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SAFEGUARDING NOTICE -->
+<div class="safe-banner">
+  <span class="safe-icon">🔒</span>
+  <span><strong>Safeguarding notice:</strong> All activities follow child protection guidelines. No identifiable images of children will be published. This project is supervised by our GP teacher.</span>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="logo">GP × Children's Home Project</div>
+  <p>A school community service project &mdash; Global Perspectives course &mdash; <a href="#">[Your School Name]</a></p>
+</footer>
+
+<script>
+  function toggleFaq(btn) {
+    const ans = btn.nextElementSibling;
+    const isOpen = btn.classList.contains('open');
+    document.querySelectorAll('.faq-q.open').forEach(b => {
+      b.classList.remove('open');
+      b.nextElementSibling.style.display = 'none';
+    });
+    if (!isOpen) {
+      btn.classList.add('open');
+      ans.style.display = 'block';
+    }
+  }
+
+  // Active nav highlight on scroll
+  const sections = document.querySelectorAll('section[id], div[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 80) current = s.id;
+    });
+    navLinks.forEach(a => {
+      a.classList.remove('active');
+      if (a.getAttribute('href') === '#' + current) a.classList.add('active');
+    });
+  });
+</script>
+</body>
+</html>
